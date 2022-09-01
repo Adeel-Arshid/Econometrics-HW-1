@@ -1,0 +1,62 @@
+---
+title: "Adeel Arshid - Econometrics HW#1"
+author: "Adeel Arshid"
+date: "9/1/2022"
+output:
+  html_document: default
+  pdf_document: default
+Group Name: Cassidy Drummond, Kseniia Huseinova, Adeel Arshid
+---
+
+
+# what was interestign that i learned?
+
+Majority of people prefer eating in restaurant than eating at home. 
+
+```{r}
+```
+
+#2 this is due before class During class on Thursday Sept 2, we’ll do experiments on sequences of random numbers. I gave out dice in first class, for you to play with sanding, filing, heating, drilling, gluing, squeezing or whatever to see if you can adjust which numbers come up. Before class, you should have done about 20 experiments where you roll the dice and record whether the result was a 6 or not.
+
+6,1,5,5,3,5,1,1,2,5,5,5,5,6,3,6,2,4,1,6
+
+Total 6: 4
+
+5,3,6,2,2,1,1,1,5,3,3,2,6,6,4,3,3,1,5,5
+
+Total 6: 3
+
+
+
+```{r}
+x <- 1:50
+w <- 1 + sqrt(x)/2
+example1 <- data.frame(x=x, y= x + rnorm(x)*w)
+attach(example1)
+
+fm <- lm(y ~ x)
+summary(fm)
+
+lrf <- lowess(x, y)
+plot(x, y)
+lines(x, lrf$y)
+abline(0, 1, lty=3)
+abline(coef(fm))
+detach()
+```
+
+#3  Open up R (on laptop or cloud). Replicate the commands given in the lecture notes R Basics for Lecture 1 to do some simple stats on the Household Pulse data. Those notes request that you find average ages for men and women. Tell me something else interesting, that you learned from the data. Are there surprises for you? We will use this same data for a few exercises so it’s worth getting deeper into it.
+
+```{r}
+load("/Users/adeelarshid/Desktop/Household_Pulse_data.RData")
+Household_Pulse_data[1:10,1:7]
+summary(Household_Pulse_data)
+attach(Household_Pulse_data)
+
+summary(TBIRTH_YEAR[GENID_DESCRIBE == "female"])
+summary(TBIRTH_YEAR[GENID_DESCRIBE == "male"])
+summary(TBIRTH_YEAR[GENID_DESCRIBE == "transgender"])
+summary(TBIRTH_YEAR[GENID_DESCRIBE == "other"])
+summary(TBIRTH_YEAR[GENID_DESCRIBE == "NA"])
+```
+
